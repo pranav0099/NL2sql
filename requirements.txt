@@ -2,6 +2,8 @@
 # Generated: 2026-04-02
 # Python >= 3.8 required
 
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 # ============================================================================
 # CORE MACHINE LEARNING & DEEP LEARNING
 # ============================================================================
@@ -16,7 +18,8 @@ pandas>=2.0.0
 # ============================================================================
 
 spacy>=3.6.0
-# Download model separately: python -m spacy download en_core_web_sm
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.6.0/en_core_web_sm-3.6.0.tar.gz
+
 
 # ============================================================================
 # DATASET HANDLING
