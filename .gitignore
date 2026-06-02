@@ -1,0 +1,42 @@
+# Uploaded databases
+database/uploads/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.venv/
+venv/
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large datasets and spider/wikisql files
+data/processed/hotel_test.json
+data/processed/hotel_train.json
+data/processed/hotel_val.json
+data/processed/test.json
+data/processed/train.json
+data/processed/val.json
+data/spider/
+data/wikisql/
+data/backup_*/
+anaconda_projects/
+.mypy_cache/
+.ipynb_checkpoints/
+

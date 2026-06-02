@@ -1,0 +1,498 @@
+{
+  "tables": {
+    "customers": {
+      "create_sql": "CREATE TABLE customers (\n        customer_id INTEGER PRIMARY KEY AUTOINCREMENT,\n        first_name TEXT NOT NULL,\n        last_name TEXT NOT NULL,\n        email TEXT UNIQUE NOT NULL,\n        phone TEXT NOT NULL,\n        city TEXT NOT NULL,\n        state TEXT DEFAULT 'Maharashtra',\n        join_date DATE NOT NULL,\n        total_orders INTEGER DEFAULT 0,\n        total_spent REAL DEFAULT 0.0\n    )",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "customer_id",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": null,
+          "pk": true
+        },
+        {
+          "cid": 1,
+          "name": "first_name",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 2,
+          "name": "last_name",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 3,
+          "name": "email",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 4,
+          "name": "phone",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 5,
+          "name": "city",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 6,
+          "name": "state",
+          "type": "TEXT",
+          "notnull": false,
+          "default": "'Maharashtra'",
+          "pk": false
+        },
+        {
+          "cid": 7,
+          "name": "join_date",
+          "type": "DATE",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 8,
+          "name": "total_orders",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": "0",
+          "pk": false
+        },
+        {
+          "cid": 9,
+          "name": "total_spent",
+          "type": "REAL",
+          "notnull": false,
+          "default": "0.0",
+          "pk": false
+        }
+      ],
+      "foreign_keys": []
+    },
+    "departments": {
+      "create_sql": "CREATE TABLE departments (\n        dept_id INTEGER PRIMARY KEY AUTOINCREMENT,\n        dept_name TEXT UNIQUE NOT NULL,\n        location TEXT NOT NULL,\n        budget REAL DEFAULT 1000000.0\n    )",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "dept_id",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": null,
+          "pk": true
+        },
+        {
+          "cid": 1,
+          "name": "dept_name",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 2,
+          "name": "location",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 3,
+          "name": "budget",
+          "type": "REAL",
+          "notnull": false,
+          "default": "1000000.0",
+          "pk": false
+        }
+      ],
+      "foreign_keys": []
+    },
+    "employees": {
+      "create_sql": "CREATE TABLE employees (\n        emp_id INTEGER PRIMARY KEY AUTOINCREMENT,\n        first_name TEXT NOT NULL,\n        last_name TEXT NOT NULL,\n        email TEXT UNIQUE NOT NULL,\n        dept_id INTEGER NOT NULL,\n        salary REAL NOT NULL,\n        hire_date DATE NOT NULL,\n        city TEXT NOT NULL,\n        FOREIGN KEY (dept_id) REFERENCES departments(dept_id)\n    )",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "emp_id",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": null,
+          "pk": true
+        },
+        {
+          "cid": 1,
+          "name": "first_name",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 2,
+          "name": "last_name",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 3,
+          "name": "email",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 4,
+          "name": "dept_id",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 5,
+          "name": "salary",
+          "type": "REAL",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 6,
+          "name": "hire_date",
+          "type": "DATE",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 7,
+          "name": "city",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "departments",
+          "from": "dept_id",
+          "to": "dept_id",
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "order_items": {
+      "create_sql": "CREATE TABLE order_items (\n        item_id INTEGER PRIMARY KEY AUTOINCREMENT,\n        order_id INTEGER NOT NULL,\n        product_id INTEGER NOT NULL,\n        quantity INTEGER NOT NULL CHECK(quantity > 0),\n        unit_price REAL NOT NULL,\n        subtotal REAL NOT NULL,\n        FOREIGN KEY (order_id) REFERENCES orders(order_id),\n        FOREIGN KEY (product_id) REFERENCES products(product_id)\n    )",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "item_id",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": null,
+          "pk": true
+        },
+        {
+          "cid": 1,
+          "name": "order_id",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 2,
+          "name": "product_id",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 3,
+          "name": "quantity",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 4,
+          "name": "unit_price",
+          "type": "REAL",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 5,
+          "name": "subtotal",
+          "type": "REAL",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "products",
+          "from": "product_id",
+          "to": "product_id",
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "orders",
+          "from": "order_id",
+          "to": "order_id",
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "orders": {
+      "create_sql": "CREATE TABLE orders (\n        order_id INTEGER PRIMARY KEY AUTOINCREMENT,\n        customer_id INTEGER NOT NULL,\n        order_date DATE NOT NULL,\n        status TEXT NOT NULL,\n        total_amount REAL NOT NULL,\n        city TEXT NOT NULL,\n        FOREIGN KEY (customer_id) REFERENCES customers(customer_id)\n    )",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "order_id",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": null,
+          "pk": true
+        },
+        {
+          "cid": 1,
+          "name": "customer_id",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 2,
+          "name": "order_date",
+          "type": "DATE",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 3,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 4,
+          "name": "total_amount",
+          "type": "REAL",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 5,
+          "name": "city",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "products": {
+      "create_sql": "CREATE TABLE products (\n        product_id INTEGER PRIMARY KEY AUTOINCREMENT,\n        product_name TEXT NOT NULL,\n        category TEXT NOT NULL,\n        price REAL NOT NULL CHECK(price > 0),\n        stock_qty INTEGER DEFAULT 0,\n        rating REAL DEFAULT 5.0 CHECK(rating >= 1.0 AND rating <= 5.0)\n    )",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "product_id",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": null,
+          "pk": true
+        },
+        {
+          "cid": 1,
+          "name": "product_name",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 2,
+          "name": "category",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 3,
+          "name": "price",
+          "type": "REAL",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 4,
+          "name": "stock_qty",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": "0",
+          "pk": false
+        },
+        {
+          "cid": 5,
+          "name": "rating",
+          "type": "REAL",
+          "notnull": false,
+          "default": "5.0",
+          "pk": false
+        }
+      ],
+      "foreign_keys": []
+    },
+    "sales": {
+      "create_sql": "CREATE TABLE sales (\n        sale_id INTEGER PRIMARY KEY AUTOINCREMENT,\n        customer_id INTEGER NOT NULL,\n        month INTEGER NOT NULL CHECK(month BETWEEN 1 AND 12),\n        year INTEGER NOT NULL,\n        sales_amount REAL NOT NULL,\n        city TEXT NOT NULL,\n        category TEXT NOT NULL,\n        FOREIGN KEY (customer_id) REFERENCES customers(customer_id)\n    )",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "sale_id",
+          "type": "INTEGER",
+          "notnull": false,
+          "default": null,
+          "pk": true
+        },
+        {
+          "cid": 1,
+          "name": "customer_id",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 2,
+          "name": "month",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 3,
+          "name": "year",
+          "type": "INTEGER",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 4,
+          "name": "sales_amount",
+          "type": "REAL",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 5,
+          "name": "city",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 6,
+          "name": "category",
+          "type": "TEXT",
+          "notnull": true,
+          "default": null,
+          "pk": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "customers",
+          "from": "customer_id",
+          "to": "customer_id",
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "sqlite_sequence": {
+      "create_sql": "CREATE TABLE sqlite_sequence(name,seq)",
+      "columns": [
+        {
+          "cid": 0,
+          "name": "name",
+          "type": "",
+          "notnull": false,
+          "default": null,
+          "pk": false
+        },
+        {
+          "cid": 1,
+          "name": "seq",
+          "type": "",
+          "notnull": false,
+          "default": null,
+          "pk": false
+        }
+      ],
+      "foreign_keys": []
+    }
+  }
+}

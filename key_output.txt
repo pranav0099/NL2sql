@@ -1,0 +1,89 @@
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\raw
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\processed
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\wikisql
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\spider
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\models
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\database
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\logs
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\config
+2026-04-02 21:11:34 | INFO     | __main__ | ================================================================================
+2026-04-02 21:11:34 | INFO     | __main__ | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.preprocessor | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.preprocessor | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.schema_linker | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.schema_linker | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.entity_extractor | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.entity_extractor | ================================================================================
+=================================================================
+NLP Pipeline � Phase 2 Test
+=================================================================
+[OK] Pipeline initialized
+[1] Query: Show all customers from Mumbai
+     Intent hint  : SELECT
+     Tables       : ['customers', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : []
+     Order        : None
+     Keywords     : ['SELECT']
+     [PASS]
+[2] Query: What is the average salary of employees?
+     Intent hint  : SELECT_AGGREGATE
+     Tables       : ['employees', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : [{'function': 'AVG', 'column': 'salary'}]
+     Order        : None
+     Keywords     : ['AVG', 'SELECT']
+     [PASS]
+[3] Query: Find top 5 products with price greater than 5000
+     Intent hint  : SELECT_WHERE
+     Tables       : ['products', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : []
+     Order        : {'column': 'product_id', 'direction': 'DESC', 'limit': None}
+     Keywords     : ['>', 'ORDER BY DESC LIMIT', 'SELECT', 'WHERE']
+     [PASS]
+[4] Query: Count total orders grouped by city
+     Intent hint  : SELECT_GROUP
+     Tables       : ['orders', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : [{'function': 'SUM', 'column': 'total_orders'}, {'function': 'COUNT', 'column': 'total_orders'}]
+     Order        : None
+     Keywords     : ['COUNT', 'GROUP BY', 'OR', 'SUM']
+     [PASS]
+[5] Query: Show customer names and their order totals
+     Intent hint  : SELECT_AGGREGATE
+     Tables       : ['sqlite_sequence', 'sales', 'products']
+     Filters      : []
+     Aggregations : [{'function': 'SUM', 'column': 'customer_id'}]
+     Order        : None
+     Keywords     : ['AND', 'OR', 'SELECT', 'SUM']
+     [PASS]
+[6] Query: List employees with salary above 60000 in Sales department
+     Intent hint  : SELECT_WHERE
+     Tables       : ['sales', 'employees', 'sqlite_sequence']
+     Filters      : []
+     Aggregations : []
+     Order        : None
+     Keywords     : ['>', 'SELECT', 'WHERE']
+     [PASS]
+[7] Query: What is the total sales amount for each category in 2024?
+     Intent hint  : SELECT_GROUP
+     Tables       : ['sales', 'sqlite_sequence', 'products']
+     Filters      : []
+     Aggregations : [{'function': 'SUM', 'column': 'total_orders'}]
+     Order        : None
+     Keywords     : ['GROUP BY', 'OR', 'SELECT', 'SUM']
+     [PASS]
+[8] Query: Show me the most expensive product
+     Intent hint  : SELECT
+     Tables       : ['sqlite_sequence', 'sales', 'products']
+     Filters      : []
+     Aggregations : []
+     Order        : None
+     Keywords     : ['SELECT']
+     [PASS]
+=================================================================
+Result: ALL TESTS PASSED
+Phase 2 NLP Pipeline is ready for Phase 3 ML Classifier
+=================================================================

@@ -1,0 +1,172 @@
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\raw
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\processed
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\wikisql
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\data\spider
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\models
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\database
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\logs
+[OK] Ensured directory exists: C:\Users\prana\OneDrive\Desktop\projects\ns\config
+2026-04-02 21:11:34 | INFO     | __main__ | ================================================================================
+2026-04-02 21:11:34 | INFO     | __main__ | Logger initialized: __main__
+2026-04-02 21:11:34 | INFO     | __main__ | Log file: C:\Users\prana\OneDrive\Desktop\projects\ns\logs\nl2sql.log
+2026-04-02 21:11:34 | INFO     | __main__ | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.preprocessor | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.preprocessor | Logger initialized: nlp.preprocessor
+2026-04-02 21:11:34 | INFO     | nlp.preprocessor | Log file: C:\Users\prana\OneDrive\Desktop\projects\ns\logs\nl2sql.log
+2026-04-02 21:11:34 | INFO     | nlp.preprocessor | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.schema_linker | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.schema_linker | Logger initialized: nlp.schema_linker
+2026-04-02 21:11:34 | INFO     | nlp.schema_linker | Log file: C:\Users\prana\OneDrive\Desktop\projects\ns\logs\nl2sql.log
+2026-04-02 21:11:34 | INFO     | nlp.schema_linker | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.entity_extractor | ================================================================================
+2026-04-02 21:11:34 | INFO     | nlp.entity_extractor | Logger initialized: nlp.entity_extractor
+2026-04-02 21:11:34 | INFO     | nlp.entity_extractor | Log file: C:\Users\prana\OneDrive\Desktop\projects\ns\logs\nl2sql.log
+2026-04-02 21:11:34 | INFO     | nlp.entity_extractor | ================================================================================
+=================================================================
+NLP Pipeline — Phase 2 Test
+=================================================================
+2026-04-02 21:11:34 | INFO     | __main__ | Initializing NLPPipeline
+2026-04-02 21:11:34 | INFO     | __main__ | Database path: database/sample.db
+2026-04-02 21:11:34 | INFO     | nlp.preprocessor | Initializing QueryPreprocessor
+2026-04-02 21:11:37 | INFO     | nlp.preprocessor | QueryPreprocessor initialized successfully
+2026-04-02 21:11:37 | INFO     | nlp.schema_linker | Initializing SchemaLinker with db_path: database/sample.db
+2026-04-02 21:11:37 | INFO     | nlp.schema_linker | Loading schema from database: database\sample.db
+2026-04-02 21:11:37 | INFO     | nlp.schema_linker | Schema loaded: 8 tables
+2026-04-02 21:11:37 | INFO     | nlp.schema_linker | Building TF-IDF vectorizer from schema
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | TF-IDF vectorizer built successfully
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | SchemaLinker initialized successfully
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Initializing EntityExtractor
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | EntityExtractor initialized successfully
+2026-04-02 21:11:38 | INFO     | __main__ | NLPPipeline initialized successfully
+
+[OK] Pipeline initialized
+
+Running queries...
+
+[1] Query: Show all customers from Mumbai
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'Show all customers from Mumbai'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'Show all customers from Mumbai'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'show all customers from mumbai'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['customers', 'sqlite_sequence', 'sales'], joins=1
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT
+     Intent hint  : SELECT
+     Tables       : ['customers', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : []
+     Order        : None
+     Keywords     : ['SELECT']
+     [PASS]
+
+[2] Query: What is the average salary of employees?
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'What is the average salary of employees?'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'What is the average salary of employees?'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'what is the average salary of employees'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['employees', 'sqlite_sequence', 'sales'], joins=0
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT_AGGREGATE
+     Intent hint  : SELECT_AGGREGATE
+     Tables       : ['employees', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : [{'function': 'AVG', 'column': 'salary'}]
+     Order        : None
+     Keywords     : ['AVG', 'SELECT']
+     [PASS]
+
+[3] Query: Find top 5 products with price greater than 5000
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'Find top 5 products with price greater than 5000'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'Find top 5 products with price greater than 5000'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'find top 5 products with price greater than 5000'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['products', 'sqlite_sequence', 'sales'], joins=0
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT_WHERE
+     Intent hint  : SELECT_WHERE
+     Tables       : ['products', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : []
+     Order        : {'column': 'product_id', 'direction': 'DESC', 'limit': None}
+     Keywords     : ['>', 'ORDER BY DESC LIMIT', 'SELECT', 'WHERE']
+     [PASS]
+
+[4] Query: Count total orders grouped by city
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'Count total orders grouped by city'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'Count total orders grouped by city'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'count total orders grouped by city'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['orders', 'sqlite_sequence', 'sales'], joins=0
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT_GROUP
+     Intent hint  : SELECT_GROUP
+     Tables       : ['orders', 'sqlite_sequence', 'sales']
+     Filters      : []
+     Aggregations : [{'function': 'SUM', 'column': 'total_orders'}, {'function': 'COUNT', 'column': 'total_orders'}]
+     Order        : None
+     Keywords     : ['COUNT', 'GROUP BY', 'OR', 'SUM']
+     [PASS]
+
+[5] Query: Show customer names and their order totals
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'Show customer names and their order totals'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'Show customer names and their order totals'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'show customer names and their order totals'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['sqlite_sequence', 'sales', 'products'], joins=0
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT_AGGREGATE
+     Intent hint  : SELECT_AGGREGATE
+     Tables       : ['sqlite_sequence', 'sales', 'products']
+     Filters      : []
+     Aggregations : [{'function': 'SUM', 'column': 'customer_id'}]
+     Order        : None
+     Keywords     : ['AND', 'OR', 'SELECT', 'SUM']
+     [PASS]
+
+[6] Query: List employees with salary above 60000 in Sales department
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'List employees with salary above 60000 in Sales department'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'List employees with salary above 60000 in Sales department'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'list employees with salary above 60000 in sales department'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['sales', 'employees', 'sqlite_sequence'], joins=0
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT_WHERE
+     Intent hint  : SELECT_WHERE
+     Tables       : ['sales', 'employees', 'sqlite_sequence']
+     Filters      : []
+     Aggregations : []
+     Order        : None
+     Keywords     : ['>', 'SELECT', 'WHERE']
+     [PASS]
+
+[7] Query: What is the total sales amount for each category in 2024?
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'What is the total sales amount for each category in 2024?'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'What is the total sales amount for each category in 2024?'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'what is the total sales amount for each category in 2024'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['sales', 'sqlite_sequence', 'products'], joins=0
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT_GROUP
+     Intent hint  : SELECT_GROUP
+     Tables       : ['sales', 'sqlite_sequence', 'products']
+     Filters      : []
+     Aggregations : [{'function': 'SUM', 'column': 'total_orders'}]
+     Order        : None
+     Keywords     : ['GROUP BY', 'OR', 'SELECT', 'SUM']
+     [PASS]
+
+[8] Query: Show me the most expensive product
+2026-04-02 21:11:38 | INFO     | __main__ | Processing query: 'Show me the most expensive product'
+2026-04-02 21:11:38 | INFO     | nlp.preprocessor | Preprocessing query: 'Show me the most expensive product'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Linking query: 'show me the most expensive product'
+2026-04-02 21:11:38 | INFO     | nlp.schema_linker | Link result: tables=['sqlite_sequence', 'sales', 'products'], joins=0
+2026-04-02 21:11:38 | INFO     | nlp.entity_extractor | Extracting entities from preprocessed query
+2026-04-02 21:11:38 | INFO     | __main__ | Query processing complete: intent=SELECT
+     Intent hint  : SELECT
+     Tables       : ['sqlite_sequence', 'sales', 'products']
+     Filters      : []
+     Aggregations : []
+     Order        : None
+     Keywords     : ['SELECT']
+     [PASS]
+
+=================================================================
+Result: ALL TESTS PASSED
+Phase 2 NLP Pipeline is ready for Phase 3 ML Classifier
+=================================================================
+
+---STDERR---

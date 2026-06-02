@@ -1,0 +1,188 @@
+{
+  "total": 8,
+  "passed": 8,
+  "failed": 0,
+  "details": [
+    {
+      "id": 1,
+      "query": "Show all customers from Mumbai",
+      "intent_hint": "SELECT",
+      "tables": [
+        "customers",
+        "sqlite_sequence",
+        "sales"
+      ],
+      "filters": [],
+      "aggregations": [],
+      "order": null,
+      "keywords": [
+        "SELECT"
+      ],
+      "passed": true
+    },
+    {
+      "id": 2,
+      "query": "What is the average salary of employees?",
+      "intent_hint": "SELECT_AGGREGATE",
+      "tables": [
+        "employees",
+        "sqlite_sequence",
+        "sales"
+      ],
+      "filters": [],
+      "aggregations": [
+        {
+          "function": "AVG",
+          "column": "salary"
+        }
+      ],
+      "order": null,
+      "keywords": [
+        "AVG",
+        "SELECT"
+      ],
+      "passed": true
+    },
+    {
+      "id": 3,
+      "query": "Find top 5 products with price greater than 5000",
+      "intent_hint": "SELECT_WHERE",
+      "tables": [
+        "products",
+        "sqlite_sequence",
+        "sales"
+      ],
+      "filters": [],
+      "aggregations": [],
+      "order": {
+        "column": "product_id",
+        "direction": "DESC",
+        "limit": null
+      },
+      "keywords": [
+        ">",
+        "ORDER BY DESC LIMIT",
+        "SELECT",
+        "WHERE"
+      ],
+      "passed": true
+    },
+    {
+      "id": 4,
+      "query": "Count total orders grouped by city",
+      "intent_hint": "SELECT_GROUP",
+      "tables": [
+        "orders",
+        "sqlite_sequence",
+        "sales"
+      ],
+      "filters": [],
+      "aggregations": [
+        {
+          "function": "COUNT",
+          "column": "total_orders"
+        },
+        {
+          "function": "SUM",
+          "column": "total_orders"
+        }
+      ],
+      "order": null,
+      "keywords": [
+        "COUNT",
+        "GROUP BY",
+        "OR",
+        "SUM"
+      ],
+      "passed": true
+    },
+    {
+      "id": 5,
+      "query": "Show customer names and their order totals",
+      "intent_hint": "SELECT_AGGREGATE",
+      "tables": [
+        "sqlite_sequence",
+        "sales",
+        "products"
+      ],
+      "filters": [],
+      "aggregations": [
+        {
+          "function": "SUM",
+          "column": "customer_id"
+        }
+      ],
+      "order": null,
+      "keywords": [
+        "AND",
+        "OR",
+        "SELECT",
+        "SUM"
+      ],
+      "passed": true
+    },
+    {
+      "id": 6,
+      "query": "List employees with salary above 60000 in Sales department",
+      "intent_hint": "SELECT_WHERE",
+      "tables": [
+        "sales",
+        "employees",
+        "sqlite_sequence"
+      ],
+      "filters": [],
+      "aggregations": [],
+      "order": null,
+      "keywords": [
+        ">",
+        "SELECT",
+        "WHERE"
+      ],
+      "passed": true
+    },
+    {
+      "id": 7,
+      "query": "What is the total sales amount for each category in 2024?",
+      "intent_hint": "SELECT_GROUP",
+      "tables": [
+        "sales",
+        "sqlite_sequence",
+        "products"
+      ],
+      "filters": [],
+      "aggregations": [
+        {
+          "function": "SUM",
+          "column": "total_orders"
+        }
+      ],
+      "order": null,
+      "keywords": [
+        "GROUP BY",
+        "OR",
+        "SELECT",
+        "SUM"
+      ],
+      "passed": true
+    },
+    {
+      "id": 8,
+      "query": "Show me the most expensive product",
+      "intent_hint": "SELECT",
+      "tables": [
+        "sqlite_sequence",
+        "sales",
+        "products"
+      ],
+      "filters": [],
+      "aggregations": [],
+      "order": null,
+      "keywords": [
+        "SELECT"
+      ],
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "init_ok": true
+}
